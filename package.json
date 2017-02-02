@@ -1,0 +1,23 @@
+{
+  "name": "generator-xrm-webresource",
+  "version": "0.1.0",
+  "description": "Dynamics 365 Web Resource Project",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "files": [
+    "app"
+  ],
+  "scripts": {
+    "test": "tsc"
+  },
+  "author": "Derek Finlinson",
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^1.0.1"
+  }
+}
