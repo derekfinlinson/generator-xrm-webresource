@@ -26,7 +26,7 @@ module.exports = class extends Generator {
     }
 
     writing() {
-        this.fs.copyTpl(this.templatePath('package.json'), this.destinationPath('package.json'), { name: this.options.appname });
+        this.fs.copyTpl(this.templatePath('package.json'), this.destinationPath('package.json'), { name: this.templateData.name });
         this.fs.copyTpl(this.templatePath('tsconfig.json'), this.destinationPath('tsconfig.json'));
         this.fs.copyTpl(this.templatePath('webpack.config.js'), this.destinationPath('webpack.config.js'), { prefix: this.templateData.prefix });
         this.fs.copyTpl(this.templatePath('src'), this.destinationPath('src'));        
