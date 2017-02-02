@@ -10,8 +10,7 @@
   "files": [
     "app"
   ],
-  "scripts": {
-    "test": "tsc",
+  "scripts": {    
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "author": "Derek Finlinson",
