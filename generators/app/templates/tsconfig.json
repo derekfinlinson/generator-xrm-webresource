@@ -4,6 +4,10 @@
         "sourceMap": true,
         "noImplicitAny": true,
         "module": "commonjs",
-        "target": "es5"
-    }
+        "target": "es5",
+        "lib": [
+            "es5", "dom", "es2015.promise"
+        ]
+    },
+    "compileOnSave": false
 }

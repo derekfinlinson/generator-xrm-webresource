@@ -7,4 +7,6 @@ Yeoman generator for Dynamics 365 Web Resource project
 
 ```javascript
 yo xrm-webresource
+
+yo xrm-webresources/script
 ```

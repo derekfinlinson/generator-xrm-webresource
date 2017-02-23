@@ -1,6 +1,6 @@
 {
   "name": "generator-xrm-webresource",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "description": "Dynamics 365 Web Resource Project",
   "license": "MIT",
   "repository": {
@@ -10,7 +10,7 @@
   "files": [
     "app"
   ],
-  "scripts": {    
+  "scripts": {
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "author": "Derek Finlinson",
@@ -21,6 +21,7 @@
     "yeoman-generator": "^1.0.1"
   },
   "devDependencies": {
+    "mocha": "^3.2.0",
     "semantic-release": "^6.3.2"
   }
 }

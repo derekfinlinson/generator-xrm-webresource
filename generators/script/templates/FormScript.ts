@@ -1,6 +1,6 @@
 import { WebApi } from "xrm-webapi";
 
-export class FormScript {
+export class <%= filename %> {
     static onLoad() {
         // Define on load events
 

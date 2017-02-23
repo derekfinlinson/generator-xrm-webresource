@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "name": "<%= name %>",
+  "private": true,
+  "scripts": {
+    "build": "webpack --env=prod --progress --colors --hide-modules",
+    "dev": "webpack --env=dev --progress --colors --hide-modules",
+    "test": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/xrm": "^8.2.1",
+    "source-map-loader": "^0.1.6",
+    "ts-loader": "^2.0.1",
+    "typescript": "^2.2.1",
+    "webpack": "^2.2.1",
+    "xrm-webapi": "^0.7.0"
+  }
+}

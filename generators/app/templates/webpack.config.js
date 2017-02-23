@@ -3,7 +3,6 @@ var webpack = require('webpack');
 module.exports = function (env) {
     var config = {
         entry: {
-            '<%= prefix %>.FormScript': './src/scripts/FormScript.ts'
         },
 
         output: {
@@ -47,6 +46,7 @@ module.exports = function (env) {
                 }
             }),
             new webpack.optimize.UglifyJsPlugin({
+                beautify: false,
                 sourceMap: false,
                 compress: {
                     warnings: false
