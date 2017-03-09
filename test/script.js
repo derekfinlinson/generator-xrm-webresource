@@ -1,6 +1,6 @@
-const path = require('path');
-const assert = require('yeoman-assert');
-const helpers = require('yeoman-test');
+var path = require('path');
+var assert = require('yeoman-assert');
+var helpers = require('yeoman-test');
 var fs = require('fs-extra');
 
 describe('xrm-webresource:script:form', function () {

@@ -1,6 +1,6 @@
-const path = require('path');
-const assert = require('yeoman-assert');
-const helpers = require('yeoman-test');
+var path = require('path');
+var assert = require('yeoman-assert');
+var helpers = require('yeoman-test');
 
 describe('xrm-webresource:app', function () {
     before(function() {
@@ -9,7 +9,7 @@ describe('xrm-webresource:app', function () {
     });
 
     it('generates a project with webpack.config.js, gulpfile.js, tsconfig.json and package.json', function () {
-        const expected = [
+        var expected = [
             'package.json',
             'tsconfig.json',
             'webpack.config.js',
