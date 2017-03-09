@@ -1,9 +1,9 @@
 var webpack = require('webpack');
+var config = require('config');
 
 module.exports = function (env) {
     var config = {
-        entry: {
-        },
+        entry: config().entry,
 
         output: {
             filename: './dist/js/[name].js',
@@ -56,6 +56,7 @@ module.exports = function (env) {
         ];
     } else {
         config.devtool = "eval-source-map";
+        config.watch = true;
     }
 
     return config;
