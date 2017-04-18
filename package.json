@@ -8,7 +8,7 @@
     "url": "https://github.com/derekfinlinson/generator-xrm-webresource.git"
   },
   "files": [
-    "app"
+    "generators"
   ],
   "scripts": {
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
@@ -19,7 +19,7 @@
     "yeoman-generator"
   ],
   "dependencies": {
-    "yeoman-generator": "^1.0.1"
+    "yeoman-generator": "^1.1.1"
   },
   "devDependencies": {
     "ast-query": "^2.0.0",
