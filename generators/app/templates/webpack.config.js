@@ -1,9 +1,9 @@
 var webpack = require('webpack');
-var config = require('config');
+var entries = require('./config').entry;
 
 module.exports = function (env) {
     var config = {
-        entry: config().entry,
+        entry: entries,
 
         output: {
             filename: './dist/js/[name].js',

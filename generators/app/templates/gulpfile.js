@@ -2,7 +2,7 @@ var gulp = require("gulp");
 var del = require("del");
 var webresource = require("gulp-webresource");
 var cache = require('gulp-cached');
-var config = require('config');
+var config = require('./config').upload;
 
 gulp.task("clean", function () {
     return del(["dist/**/*"]);
@@ -25,7 +25,7 @@ gulp.task("upload",
     function () {
         return gulp.src("./dist/**/*.+(css|html|js)")
             .pipe(cache('upload'))
-            .pipe(webresource.Upload(config().upload, true));
+            .pipe(webresource.Upload(config, true));
     });
 
 gulp.task('watch', function () {
