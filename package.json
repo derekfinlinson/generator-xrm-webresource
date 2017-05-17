@@ -23,10 +23,16 @@
     "ast-query": "^2.0.0",
     "fs-extra": "^2.0.0"
   },
-  "devDependencies": {    
+  "devDependencies": {
+    "cz-conventional-changelog": "^2.0.0",
     "mocha": "^3.2.0",
     "semantic-release": "^6.3.2",
     "yeoman-assert": "^3.0.0",
     "yeoman-test": "^1.6.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
