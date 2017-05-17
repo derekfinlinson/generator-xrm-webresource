@@ -20,11 +20,11 @@ describe('xrm-webresource:script:form', function () {
     });
 
     it('should add entries to config.js', function () {
-        assert.fileContent('config.js', "'Crm.AccountForm': './src/scripts/AccountForm.ts'");
-        assert.fileContent('config.js', "Path: 'dist/js/Crm.AccountForm.js'");
-        assert.fileContent('config.js', "UniqueName: 'crm_AccountForm.js'");
-        assert.fileContent('config.js', "DisplayName: 'Account Form Script'");
-        assert.fileContent('config.js', "Type: 'JavaScript'");
+        assert.fileContent('config.json', '"Crm.AccountForm": "./src/scripts/AccountForm.ts"');
+        assert.fileContent('config.json', '"Path": "dist\\\\js\\\\Crm.AccountForm.js"');
+        assert.fileContent('config.json', '"UniqueName": "crm_AccountForm.js"');
+        assert.fileContent('config.json', '"DisplayName": "Account Form Script"');
+        assert.fileContent('config.json', '"Type": "JavaScript"');
     });
 });
 
@@ -45,11 +45,11 @@ describe('xrm-webresource:script:ribbon', function () {
     });
 
     it('should add entries to config.js', function () {
-        assert.fileContent('config.js', "'Crm.AccountRibbon': './src/scripts/AccountRibbon.ts'");
-        assert.fileContent('config.js', "Path: 'dist/js/Crm.AccountRibbon.js'");
-        assert.fileContent('config.js', "UniqueName: 'crm_AccountRibbon.js'");
-        assert.fileContent('config.js', "DisplayName: 'Account Ribbon Script'");
-        assert.fileContent('config.js', "Type: 'JavaScript'");
+        assert.fileContent('config.json', '"Crm.AccountRibbon": "./src/scripts/AccountRibbon.ts"');
+        assert.fileContent('config.json', '"Path": "dist\\\\js\\\\Crm.AccountRibbon.js"');
+        assert.fileContent('config.json', '"UniqueName": "crm_AccountRibbon.js"');
+        assert.fileContent('config.json', '"DisplayName": "Account Ribbon Script"');
+        assert.fileContent('config.json', '"Type": "JavaScript"');
     });
 });
 
@@ -69,10 +69,10 @@ describe('xrm-webresource:script:resource', function () {
     });
 
     it('should add entries to config.js', function () {
-        assert.fileContent('config.js', "'Crm.Resource': './src/scripts/Resource.ts'");    
-        assert.fileContent('config.js', "Path: 'dist/js/Crm.Resource.js'");
-        assert.fileContent('config.js', "UniqueName: 'crm_Resource.js'");
-        assert.fileContent('config.js', "DisplayName: 'Resource Script'");
-        assert.fileContent('config.js', "Type: 'JavaScript'");
+        assert.fileContent('config.json', '"Crm.Resource": "./src/scripts/Resource.ts"');    
+        assert.fileContent('config.json', '"Path": "dist\\\\js\\\\Crm.Resource.js"');
+        assert.fileContent('config.json', '"UniqueName": "crm_Resource.js"');
+        assert.fileContent('config.json', '"DisplayName": "Resource Script"');
+        assert.fileContent('config.json', '"Type": "JavaScript"');
     });
 });

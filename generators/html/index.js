@@ -5,22 +5,43 @@ module.exports = class extends Generator {
         return this.prompt([
         {
             type: 'input',
-            name: 'prefix',
-            message: 'Your library prefix',
-            default: this.config.get("prefix")
+            name: 'filename',
+            message: 'HTML filename'
         },
         {
             type: 'input',
-            name: 'filename',
-            message: 'HTML filename'
-        }]).then(answers => {
-            this.config.set("prefix", answers.prefix);
+            name: 'uniqueName',
+            message: 'HTML page unique name (including prefix)'           
+        },
+        {
+            type: 'input',
+            name: 'displayName',
+            message: 'HTML page display name'
+        }]).then(answers => {            
             this.filename = answers.filename;
+            this.displayName = answers.displayName;
+            this.uniqueName = answers.uniqueName;
         });
     }
 
     writing() {
-        var prefix = this.config.get("prefix");
-        this.fs.copy(this.templatePath('index.html'), this.destinationPath(this.filename + '.html'));
+        this.fs.copy(this.templatePath('index.html'), this.destinationPath(`src/html/${this.filename}.html`));
+
+        if (this.fs.exists(this.destinationPath('config.json'))) {
+            const config = this.fs.readJSON(this.destinationPath('config.json'));
+
+            config.webResources.push(
+                    {
+                        Path: `dist\\html\\${this.filename}.html`,
+                        UniqueName: this.uniqueName,
+                        DisplayName: this.displayName,
+                        Type: 'HTML'
+                    }
+            );
+
+            this.fs.extendJSON(this.destinationPath('config.json'), config);
+        } else {
+            this.log("config.json file not found. Unable to add script to build tasks");
+        }
     }
 };

@@ -1,12 +1,18 @@
 var gulp = require("gulp");
-var del = require("del");
 var webresource = require("gulp-webresource");
 var cache = require('gulp-cached');
-var config = require('./config').upload;
+var webResources = require('./config.json').webResources;
+var config = require('./creds.json');
 
-gulp.task("clean", function () {
-    return del(["dist/**/*"]);
-});
+var uploadConfig = {
+    Server: config.server,
+    User: config.username,
+    Password: config.password,
+    ClientId: config.clientId,
+    ClientSecret: config.clientSecret,
+    Solution: config.solution,
+    WebResources: webResources
+};
 
 gulp.task("static", function () {
     gulp.src("./src/html/*.html")
@@ -25,11 +31,15 @@ gulp.task("upload",
     function () {
         return gulp.src("./dist/**/*.+(css|html|js)")
             .pipe(cache('upload'))
-            .pipe(webresource.Upload(config, true));
+            .pipe(webresource.Upload(uploadConfig, true));
     });
 
+gulp.task("deploy", function () {
+    return gulp.src("./dist/**/*.+(css|html|js)").pipe(webresource.Upload(uploadConfig, true));
+});
+
 gulp.task('watch', function () {
-    gulp.watch('./**/*.js', ['upload']);
+    gulp.watch('./dist/**/*.(css|html|js)', ['upload']);
 });
 
 gulp.task("default", ["cache", "watch"]);

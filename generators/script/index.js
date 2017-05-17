@@ -36,7 +36,7 @@ module.exports = class extends Generator {
         {
             type: 'input',
             name: 'uniqueName',
-            message: 'Script unique name'           
+            message: 'Script unique name (including prefix)'
         },
         {
             type: 'input',
@@ -62,22 +62,23 @@ module.exports = class extends Generator {
             this.fs.write(this.destinationPath(`src/scripts/${this.filename}.ts`), '');
         }
         
-        if (this.fs.exists(this.destinationPath('config.js'))) {
-            const config = this.fs.read(this.destinationPath('config.js'));
+        if (this.fs.exists(this.destinationPath('config.json'))) {
+            const config = this.fs.readJSON(this.destinationPath('config.json'));
 
-            const tree = ast(config);
+            config.webResources.push(
+                    {
+                        Path: `dist\\js\\${prefix}.${this.filename}.js`,
+                        UniqueName: this.uniqueName,
+                        DisplayName: this.displayName,
+                        Type: 'JavaScript'
+                    }
+            );
 
-            const path = `dist/js/${prefix}.${this.filename}.js`;
+            config.entries[`${prefix}.${this.filename}`] = `./src/scripts/${this.filename}.ts`;
 
-            const entries = tree.var('entries').value();
-            const resources = tree.var('webResources').value();
-            
-            resources.push(`{ Path: '${path}', UniqueName: '${this.uniqueName}', DisplayName: '${this.displayName}', Type: 'JavaScript'}`);
-            entries.key(`'${prefix}.${this.filename}'`).value(`'./src/scripts/${this.filename}.ts'`);
-            
-            this.fs.write(this.destinationPath('config.js'), tree.toString());
+            this.fs.extendJSON(this.destinationPath('config.json'), config);
         } else {
-            this.log("config.js file not found. Unable to add script to build tasks");
+            this.log("config.json file not found. Unable to add script to build tasks");
         }
     }
 };

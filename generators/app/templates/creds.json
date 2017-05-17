@@ -1,0 +1,8 @@
+{
+    "server": "<%= server %>",
+    "username": "<%= username %>",
+    "password": "<%= password %>",
+    "clientId": "<%= clientid %>",
+    "clientSecret": "<%= clientsecret %>",
+    "solution": "<%= solution %>"
+}

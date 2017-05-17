@@ -1,5 +1,5 @@
 var webpack = require('webpack');
-var entries = require('./config').entry;
+var entries = require('./config.json').entries;
 
 module.exports = function (env) {
     var config = {
