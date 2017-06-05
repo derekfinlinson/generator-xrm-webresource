@@ -31,11 +31,17 @@ module.exports = function (env) {
                     use: ["source-map-loader"]
                 }
             ]
-        }
+        },
+
+        plugins: [
+            new webpack.ProvidePlugin({
+                Promise: 'es6-promise-promise'
+            })
+        ]
     }
 
     if (env === "prod") {
-        config.plugins = [
+        config.plugins = (config.plugins || []).concat([
             new webpack.LoaderOptionsPlugin({
                 minimize: true,
                 debug: false
@@ -52,8 +58,9 @@ module.exports = function (env) {
                     warnings: false
                 },
                 comments: false
-            })
-        ];
+            }),
+            new 
+        ]);
     } else {
         config.devtool = "eval-source-map";
         config.watch = true;
