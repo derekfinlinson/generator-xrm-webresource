@@ -17,9 +17,9 @@ describe('xrm-webresource:html', function () {
     });
 
     it('should add the file to config.json', function () {
-        assert.fileContent('config.json', '"Path": "dist\\\\html\\\\index.html"');
-        assert.fileContent('config.json', '"UniqueName": "crm_index.html"');
-        assert.fileContent('config.json', '"DisplayName": "Index HTML"');
-        assert.fileContent('config.json', '"Type": "HTML"');
+        assert.fileContent('config.json', '"path": "./dist/html/index.html"');
+        assert.fileContent('config.json', '"uniqueName": "crm_index.html"');
+        assert.fileContent('config.json', '"displayName": "Index HTML"');
+        assert.fileContent('config.json', '"type": "HTML"');
     });
 });

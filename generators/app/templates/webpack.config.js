@@ -1,9 +1,12 @@
 var webpack = require('webpack');
-var entries = require('./config.json').entries;
+var config = require('./config.json');
+var WebpackEventPlugin = require('webpack-event-plugin');
+var webResource = require('node-webresource');
+var creds = require('./creds.json');
 
 module.exports = function (env) {
-    var config = {
-        entry: entries,
+    var webpackConfig = {
+        entry: config.entries,
 
         output: {
             filename: './dist/js/[name].js',
@@ -36,12 +39,45 @@ module.exports = function (env) {
         plugins: [
             new webpack.ProvidePlugin({
                 Promise: 'es6-promise-promise'
-            })
+            }),
+            new WebpackEventPlugin([
+                {
+                    hook: 'after-emit',
+                    callback: (compilation, callback) => {
+                        var uploadConfig = {
+                            tenant: creds.tenant,
+                            server: creds.server,
+                            clientId: creds.clientId,
+                            clientSecret: creds.clientSecret,
+                            username: creds.username,
+                            password: creds.password,
+                            webResources: config.webResources,
+                            solution: creds.solution
+                        };
+
+                        var assets = Object.keys(compilation.assets).filter(asset => {
+                            return compilation.assets[asset].emitted;
+                        }).map(asset => {
+                            return {
+                                name: asset,
+                                source: compilation.assets[asset].source()
+                            };
+                        });
+                        
+                        webResource.upload(uploadConfig, assets).then(() => {
+                            callback();
+                        }, (error) => {
+                            console.log(error);
+                            callback();
+                        });
+                    }
+                }                
+            ])
         ]
     }
 
     if (env === "prod") {
-        config.plugins = (config.plugins || []).concat([
+        webpackConfig.plugins = (webpackConfig.plugins || []).concat([
             new webpack.LoaderOptionsPlugin({
                 minimize: true,
                 debug: false
@@ -58,13 +94,12 @@ module.exports = function (env) {
                     warnings: false
                 },
                 comments: false
-            }),
-            new 
+            })             
         ]);
     } else {
-        config.devtool = "eval-source-map";
-        config.watch = true;
+        webpackConfig.devtool = "eval-source-map";
+        webpackConfig.watch = true;
     }
 
-    return config;
+    return webpackConfig;
 }

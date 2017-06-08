@@ -1,5 +1,4 @@
 const Generator = require('yeoman-generator');
-const ast = require("ast-query");
 
 module.exports = class extends Generator {
     prompting() {
@@ -67,10 +66,10 @@ module.exports = class extends Generator {
 
             config.webResources.push(
                     {
-                        Path: `dist\\js\\${prefix}.${this.filename}.js`,
-                        UniqueName: this.uniqueName,
-                        DisplayName: this.displayName,
-                        Type: 'JavaScript'
+                        path: `./dist/js/${prefix}.${this.filename}.js`,
+                        uniqueName: this.uniqueName,
+                        displayName: this.displayName,
+                        type: 'JavaScript'
                     }
             );
 

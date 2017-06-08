@@ -18,12 +18,11 @@ describe('xrm-webresource:app:user', function () {
             .withPrompts(prompts);
     });
 
-    it('generates a project with webpack.config.js, gulpfile.js, tsconfig.json and package.json, config.json and creds.json', function () {
+    it('generates a project with webpack.config.js, tsconfig.json and package.json, config.json and creds.json', function () {
         var expected = [
             'package.json',
             'tsconfig.json',
             'webpack.config.js',
-            'gulpfile.js',
             'config.json',
             'creds.json'
         ];
@@ -63,12 +62,11 @@ describe('xrm-webresource:app:client', function () {
             .withPrompts(prompts);
     });
 
-    it('generates a project with webpack.config.js, gulpfile.js, tsconfig.json and package.json, config.json and creds.json', function () {
+    it('generates a project with webpack.config.js, tsconfig.json and package.json, config.json and creds.json', function () {
         var expected = [
             'package.json',
             'tsconfig.json',
             'webpack.config.js',
-            'gulpfile.js',
             'config.json',
             'creds.json'
         ];

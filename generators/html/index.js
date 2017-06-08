@@ -32,10 +32,10 @@ module.exports = class extends Generator {
 
             config.webResources.push(
                     {
-                        Path: `dist\\html\\${this.filename}.html`,
-                        UniqueName: this.uniqueName,
-                        DisplayName: this.displayName,
-                        Type: 'HTML'
+                        path: `./dist/html/${this.filename}.html`,
+                        uniqueName: this.uniqueName,
+                        displayName: this.displayName,
+                        type: 'HTML'
                     }
             );
 
