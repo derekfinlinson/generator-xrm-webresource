@@ -2,23 +2,23 @@ var path = require('path');
 var assert = require('yeoman-assert');
 var helpers = require('yeoman-test');
 
-describe('xrm-webresource:app:user', function () {
+describe('web resource project with user authentication', () => {
     var prompts = {
-        prefix: 'Jt',
+        prefix: 'Crm',
         name: 'web-resources',
-        solution: 'jt',
+        solution: 'crm',
         server: 'https://org.crm.dynamics.com',
         username: 'user@org.onmicrosoft.com',
         password: 'SecretPassword',        
         authType: 'user'
     };
 
-    before(function() {
+    beforeEach(() => {
         return helpers.run(path.join(__dirname, '../generators/app'))
             .withPrompts(prompts);
     });
 
-    it('generates a project with webpack.config.js, tsconfig.json and package.json, config.json and creds.json', function () {
+    test('generates project with webpack.config.js, tsconfig.json, package.json, config.json and creds.json', () => {
         var expected = [
             'package.json',
             'tsconfig.json',
@@ -28,10 +28,17 @@ describe('xrm-webresource:app:user', function () {
         ];
 
         assert.file(expected);
+    });
 
+    test('package.json has web-resources name', () => {
         assert.fileContent('package.json', `"name": "${prompts.name}"`);
+    });
+        
+    test('webpack.config.js has Crm prefix', () => {
         assert.fileContent('webpack.config.js', `library: '${prompts.prefix}'`);
-
+    });
+        
+    test('creds.json has serer, username, password and solution', () => {
         var config = [
             `"server": "${prompts.server}"`,
             `"username": "${prompts.username}"`,
@@ -42,27 +49,26 @@ describe('xrm-webresource:app:user', function () {
         for (let c of config) {
             assert.fileContent('creds.json', c);
         }
-        
     });
 });
 
-describe('xrm-webresource:app:client', function () {
+describe('web resource project with client authentication', function () {
     var prompts = {
-        prefix: 'Jt',
+        prefix: 'Crm',
         name: 'web-resources',
-        solution: 'jt',
+        solution: 'crm',
         server: 'https://org.crm.dynamics.com',        
         clientid: 'randomid',
         clientsecret: 'clientSecret',
         authType: 'client'
     };
 
-    before(function() {
+    beforeEach(() => {
         return helpers.run(path.join(__dirname, '../generators/app'))
             .withPrompts(prompts);
     });
 
-    it('generates a project with webpack.config.js, tsconfig.json and package.json, config.json and creds.json', function () {
+    test('generates project with webpack.config.js, tsconfig.json, package.json, config.json and creds.json', () => {
         var expected = [
             'package.json',
             'tsconfig.json',
@@ -72,10 +78,17 @@ describe('xrm-webresource:app:client', function () {
         ];
 
         assert.file(expected);
+    });
 
+    test('package.json has web-resources name', () => {
         assert.fileContent('package.json', `"name": "${prompts.name}"`);
+    });
+        
+    test('webpack.config.js has Crm prefix', () => {
         assert.fileContent('webpack.config.js', `library: '${prompts.prefix}'`);
+    });
 
+    test('creds.json has server, clientId, clientSecret and solution', () => {
         var config = [
             `"server": "${prompts.server}"`,
             `"clientId": "${prompts.clientid}"`,
@@ -86,6 +99,5 @@ describe('xrm-webresource:app:client', function () {
         for (let c of config) {
             assert.fileContent('creds.json', c);
         }
-        
     });
 });

@@ -3,10 +3,10 @@ var assert = require('yeoman-assert');
 var helpers = require('yeoman-test');
 var fs = require('fs-extra');
 
-describe('xrm-webresource:script:form', function () {
-    before(function() {
+describe('create form script', () => {
+    beforeEach(() => {
         return helpers.run(path.join(__dirname, '../generators/script'))
-            .inTmpDir(function (dir) {
+            .inTmpDir((dir) => {
                 fs.copySync(path.join(__dirname, '../generators/app/templates'), dir);
             })
             .withPrompts({
@@ -14,12 +14,12 @@ describe('xrm-webresource:script:form', function () {
             });
     });
 
-    it('creates AccountForm.ts file with AccountForm class export', function() {
+    test('create AccountForm.ts file with AccountForm class export', () => {
         assert.file(['src/scripts/AccountForm.ts']);
         assert.fileContent('src/scripts/AccountForm.ts', 'export class AccountForm');
     });
 
-    it('should add entries to config.js', function () {
+    test('add entries to config.js', () => {
         assert.fileContent('config.json', '"Crm.AccountForm": "./src/scripts/AccountForm.ts"');
         assert.fileContent('config.json', '"path": "./dist/js/Crm.AccountForm.js"');
         assert.fileContent('config.json', '"uniqueName": "crm_AccountForm.js"');
@@ -28,10 +28,10 @@ describe('xrm-webresource:script:form', function () {
     });
 });
 
-describe('xrm-webresource:script:ribbon', function () {
-    before(function() {
+describe('create ribbon script', () => {
+    beforeEach(() => {
         return helpers.run(path.join(__dirname, '../generators/script'))
-            .inTmpDir(function (dir) {
+            .inTmpDir((dir) => {
                 fs.copySync(path.join(__dirname, '../generators/app/templates'), dir);
             })
             .withPrompts({
@@ -39,12 +39,12 @@ describe('xrm-webresource:script:ribbon', function () {
             });
     });
 
-    it('creates AccountRibbon.ts file with AccountRibbon class export', function() {
+    test('create AccountRibbon.ts file with AccountRibbon class export', () => {
         assert.file(['src/scripts/AccountRibbon.ts']);
         assert.fileContent('src/scripts/AccountRibbon.ts', 'export class AccountRibbon');
     });
 
-    it('should add entries to config.js', function () {
+    test('add entries to config.js', () => {
         assert.fileContent('config.json', '"Crm.AccountRibbon": "./src/scripts/AccountRibbon.ts"');
         assert.fileContent('config.json', '"path": "./dist/js/Crm.AccountRibbon.js"');
         assert.fileContent('config.json', '"uniqueName": "crm_AccountRibbon.js"');
@@ -53,10 +53,10 @@ describe('xrm-webresource:script:ribbon', function () {
     });
 });
 
-describe('xrm-webresource:script:resource', function () {
-    before(function() {
+describe('create web resource script', () => {
+    beforeEach(() => {
         return helpers.run(path.join(__dirname, '../generators/script'))
-            .inTmpDir(function (dir) {
+            .inTmpDir((dir) => {
                 fs.copySync(path.join(__dirname, '../generators/app/templates'), dir);
             })
             .withPrompts({
@@ -64,11 +64,11 @@ describe('xrm-webresource:script:resource', function () {
             });
     });
 
-    it('creates ResourceScript.ts', function() {
+    test('create ResourceScript.ts', () => {
         assert.file(['src/scripts/Resource.ts']);
     });
 
-    it('should add entries to config.js', function () {
+    test('add entries to config.js', () => {
         assert.fileContent('config.json', '"Crm.Resource": "./src/scripts/Resource.ts"');    
         assert.fileContent('config.json', '"path": "./dist/js/Crm.Resource.js"');
         assert.fileContent('config.json', '"uniqueName": "crm_Resource.js"');
