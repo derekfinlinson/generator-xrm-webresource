@@ -1,8 +1,8 @@
 var webpack = require('webpack');
-var config = require('./config.json');
 var WebpackEventPlugin = require('webpack-event-plugin');
 var webResource = require('node-webresource');
 var creds = require('./creds.json');
+var config = require('./config.json');
 
 module.exports = function (env) {
     var webpackConfig = {

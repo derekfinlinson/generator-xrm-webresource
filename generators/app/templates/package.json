@@ -8,7 +8,7 @@
     "test": "tsc --noEmit"
   },
   "devDependencies": {
-    "@types/xrm": "^8.2.4",
+    "@types/xrm": "^8.2.5",
     "node-webresource": "^1.0.1",
     "webpack-event-plugin": "^1.0.0",
     "source-map-loader": "^0.2.1",
