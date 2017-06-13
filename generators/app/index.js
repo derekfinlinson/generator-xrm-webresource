@@ -22,13 +22,17 @@ module.exports = class extends Generator {
         {
             type: 'input',
             name: 'solution',
-            message: 'Your solution prefix',
-            default: 'new'
+            message: 'Your solution unique name'            
         },
         {
             type: 'input',
             name: 'server',
             message: 'Your CRM URL'
+        },
+        {
+            type: 'input',
+            name: 'tenant',
+            message: 'Your tenant'
         },
         {
             type: 'list',
@@ -78,31 +82,34 @@ module.exports = class extends Generator {
             }
         }]).then(answers => {
             this.config.set('prefix', answers.prefix);
-            this.config.set('solution', answers.solution);
-            this.appname = answers.name;
+            this.authType = answers.authType;
+            this.appname = answers.name.replace(" ", "");
             this.server = answers.server;
             this.username = answers.username;
             this.password = answers.password;
             this.clientid = answers.clientid;
             this.clientsecret = answers.clientsecret;
+            this.tenant = answers.tenant;
+            this.solution = answers.solution;
         });
     }
 
     writing() {
         var prefix = this.config.get('prefix');
-        var solution = this.config.get('solution');
-
+        
         this.fs.copyTpl(this.templatePath('package.json'), this.destinationPath('package.json'), { name: this.appname });
         this.fs.copy(this.templatePath('tsconfig.json'), this.destinationPath('tsconfig.json'));
         this.fs.copyTpl(this.templatePath('webpack.config.js'), this.destinationPath('webpack.config.js'), { prefix: prefix });        
         this.fs.copyTpl(this.templatePath('config.json'), this.destinationPath('config.json'));
+
         this.fs.copyTpl(this.templatePath('creds.json'), this.destinationPath('creds.json'), {
-            solution: solution,
+            solution: this.solution,
             server: this.server,
-            username: this.username,
-            password: this.password,
+            tenant: this.tenant,
             clientid: this.clientid,
-            clientsecret: this.clientsecret
+            clientsecret: this.clientsecret,
+            username: this.username,
+            password: this.password
         });
     }
 

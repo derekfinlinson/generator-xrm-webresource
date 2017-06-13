@@ -4,5 +4,6 @@
     "password": "<%= password %>",
     "clientId": "<%= clientid %>",
     "clientSecret": "<%= clientsecret %>",
-    "solution": "<%= solution %>"
+    "solution": "<%= solution %>",
+    "tenant": "<%= tenant%>"
 }

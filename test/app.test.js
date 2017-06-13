@@ -5,12 +5,13 @@ var helpers = require('yeoman-test');
 describe('web resource project with user authentication', () => {
     var prompts = {
         prefix: 'Crm',
-        name: 'web-resources',
-        solution: 'crm',
+        name: 'web  resources ',
+        solution: 'CRM Solution',
         server: 'https://org.crm.dynamics.com',
         username: 'user@org.onmicrosoft.com',
         password: 'SecretPassword',        
-        authType: 'user'
+        authType: 'user',
+        tenant: 'tenant.onmicrosoft.com'
     };
 
     beforeEach(() => {
@@ -31,19 +32,20 @@ describe('web resource project with user authentication', () => {
     });
 
     test('package.json has web-resources name', () => {
-        assert.fileContent('package.json', `"name": "${prompts.name}"`);
+        assert.fileContent('package.json', `"name": "${prompts.name.replace(" ", "")}"`);
     });
         
     test('webpack.config.js has Crm prefix', () => {
         assert.fileContent('webpack.config.js', `library: '${prompts.prefix}'`);
     });
         
-    test('creds.json has serer, username, password and solution', () => {
+    test('creds.json has serer, username, password, tenant and solution', () => {
         var config = [
             `"server": "${prompts.server}"`,
             `"username": "${prompts.username}"`,
             `"password": "${prompts.password}"`,            
-            `"solution": "${prompts.solution}"`
+            `"solution": "${prompts.solution}"`,
+            `"tenant": "${prompts.tenant}`
         ];
 
         for (let c of config) {
