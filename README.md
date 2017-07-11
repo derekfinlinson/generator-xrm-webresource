@@ -7,8 +7,7 @@ Yeoman generator for Dynamics 365 Web Resource project using the latest JavaScri
 
 * Project scaffolding
   * Webpack for bundling of script files
-  * Gulp for deploying web resources using [gulp-webresource](https://github.com/davidyack/gulp-webresource)
-  * Yarn for package management
+  * Deploy web resources from webpack emits using [node-webresource](https://github.com/derekfinlinson/node-webresource)
 * Script Web Resources
   * TypeScript
   * Form, ribbon or web resources scripts
