@@ -9,8 +9,7 @@ module.exports = function (env) {
         entry: config.entries,
 
         output: {
-            filename: './dist/js/[name].js',
-            library: '<%= prefix %>'
+            filename: './dist/js/[name].js'
         },
 
         resolve: {

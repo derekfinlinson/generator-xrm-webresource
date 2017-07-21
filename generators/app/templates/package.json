@@ -12,10 +12,11 @@
     "node-webresource": "^1.0.1",
     "webpack-event-plugin": "^1.0.0",
     "source-map-loader": "^0.2.1",
-    "ts-loader": "^2.1.0",
+    "ts-loader": "^2.3.1",
     "es6-promise-promise": "^1.0.0",
-    "typescript": "^2.3.4",
-    "webpack": "^2.6.1",
-    "xrm-webapi": "^2.0.5"
+    "typescript": "^2.4.2",
+    "webpack": "^3.3.0",
+    "xrm-webapi": "^2.3.1",
+    "xrm-mock": "^1.2.5"
   }
 }
