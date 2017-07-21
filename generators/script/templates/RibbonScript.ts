@@ -10,7 +10,11 @@ export namespace <%= namespace %> {
         }
     }
 
-    export class <%= filename %> {
+    class <%= filename %> {
+        constructor(xrm? Xrm.XrmStatic) {
+            Xrm = xrm || Xrm;
+        }
+        
         buttonClick() {
             
         }
