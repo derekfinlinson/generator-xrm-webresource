@@ -35,10 +35,6 @@ describe('web resource project with user authentication', () => {
         assert.fileContent('package.json', `"name": "${prompts.name.replace(" ", "")}"`);
     });
         
-    test('webpack.config.js has Crm prefix', () => {
-        assert.fileContent('webpack.config.js', `library: '${prompts.prefix}'`);
-    });
-        
     test('creds.json has serer, username, password, tenant and solution', () => {
         var config = [
             `"server": "${prompts.server}"`,
@@ -84,10 +80,6 @@ describe('web resource project with client authentication', function () {
 
     test('package.json has web-resources name', () => {
         assert.fileContent('package.json', `"name": "${prompts.name}"`);
-    });
-        
-    test('webpack.config.js has Crm prefix', () => {
-        assert.fileContent('webpack.config.js', `library: '${prompts.prefix}'`);
     });
 
     test('creds.json has server, clientId, clientSecret and solution', () => {

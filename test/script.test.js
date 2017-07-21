@@ -10,13 +10,19 @@ describe('create form script', () => {
                 fs.copySync(path.join(__dirname, '../generators/app/templates'), dir);
             })
             .withPrompts({
-                prefix: 'Crm', filename: 'AccountForm', type: 'form', uniqueName: 'crm_AccountForm.js', displayName: "Account Form Script",
+                namespace: 'Crm', filename: 'AccountForm', type: 'form', uniqueName: 'crm_AccountForm.js', displayName: "Account Form Script",
             });
     });
 
-    test('create AccountForm.ts file with AccountForm class export', () => {
+    test('create AccountForm.ts file', () => {
         assert.file(['src/scripts/AccountForm.ts']);
-        assert.fileContent('src/scripts/AccountForm.ts', 'export class AccountForm');
+    });
+
+    test('check AccountForm.ts file contents', () => {
+        assert.fileContent('src/scripts/AccountForm.ts', 'class AccountForm');
+        assert.fileContent('src/scripts/AccountForm.ts', 'accountform = new AccountForm(xrm || Xrm);');
+        assert.fileContent('src/scripts/AccountForm.ts', 'export namespace Crm');
+        assert.fileContent('src/scripts/AccountForm.ts', 'let accountform: AccountForm;');
     });
 
     test('add entries to config.js', () => {
@@ -35,13 +41,19 @@ describe('create ribbon script', () => {
                 fs.copySync(path.join(__dirname, '../generators/app/templates'), dir);
             })
             .withPrompts({
-                prefix: 'Crm', filename: 'AccountRibbon', type: 'form', uniqueName: 'crm_AccountRibbon.js', displayName: "Account Ribbon Script",
+                namespace: 'Crm', filename: 'AccountRibbon', type: 'form', uniqueName: 'crm_AccountRibbon.js', displayName: "Account Ribbon Script",
             });
     });
 
-    test('create AccountRibbon.ts file with AccountRibbon class export', () => {
+    test('create AccountRibbon.ts file', () => {
         assert.file(['src/scripts/AccountRibbon.ts']);
-        assert.fileContent('src/scripts/AccountRibbon.ts', 'export class AccountRibbon');
+    });
+
+    test('check AccountRibbon.ts file contents', () => {
+        assert.fileContent('src/scripts/AccountRibbon.ts', 'class AccountRibbon');
+        assert.fileContent('src/scripts/AccountRibbon.ts', 'accountribbon = new AccountRibbon(xrm || Xrm);');
+        assert.fileContent('src/scripts/AccountRibbon.ts', 'export namespace Crm');
+        assert.fileContent('src/scripts/AccountRibbon.ts', 'let accountribbon: AccountRibbon;');
     });
 
     test('add entries to config.js', () => {
@@ -60,7 +72,7 @@ describe('create web resource script', () => {
                 fs.copySync(path.join(__dirname, '../generators/app/templates'), dir);
             })
             .withPrompts({
-                prefix: 'Crm', filename: 'Resource', type: 'form', uniqueName: 'crm_Resource.js', displayName: "Resource Script",
+                namespace: 'Crm', filename: 'Resource', type: 'form', uniqueName: 'crm_Resource.js', displayName: "Resource Script",
             });
     });
 
