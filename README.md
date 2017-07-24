@@ -11,6 +11,7 @@ Yeoman generator for Dynamics 365 Web Resource project using the latest JavaScri
 * Script Web Resources
   * TypeScript
   * Form, ribbon or web resources scripts
+  * Unit test using [xrm-mock](https://github.com/camelCaseDave/xrm-mock)
 * HTML Web Resources
   * Template includes ClientGlobalContext script tag
 
