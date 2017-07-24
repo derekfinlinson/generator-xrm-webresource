@@ -16,13 +16,24 @@ module.exports = class extends Generator {
         },
         {
             type: 'input',
-            name: 'prefix',
-            message: 'Your library prefix'
-        },
-        {
-            type: 'input',
             name: 'solution',
             message: 'Your solution unique name'            
+        },
+        {
+            type: 'list',
+            name: 'package',
+            message: 'Select package manager',
+            default: 'npm',
+            choices: [
+                {
+                    name: 'NPM',
+                    value: 'npm'
+                },
+                {
+                    name: 'Yarn',
+                    value: 'yarn'
+                }
+            ]
         },
         {
             type: 'input',
@@ -81,7 +92,6 @@ module.exports = class extends Generator {
                 return answers.authType === 'client'
             }
         }]).then(answers => {
-            this.config.set('prefix', answers.prefix);
             this.authType = answers.authType;
             this.appname = answers.name.replace(" ", "");
             this.server = answers.server;
@@ -91,15 +101,14 @@ module.exports = class extends Generator {
             this.clientsecret = answers.clientsecret;
             this.tenant = answers.tenant;
             this.solution = answers.solution;
+            this.package = answers.package;
         });
     }
 
     writing() {
-        var prefix = this.config.get('prefix');
-        
         this.fs.copyTpl(this.templatePath('package.json'), this.destinationPath('package.json'), { name: this.appname });
         this.fs.copy(this.templatePath('tsconfig.json'), this.destinationPath('tsconfig.json'));
-        this.fs.copyTpl(this.templatePath('webpack.config.js'), this.destinationPath('webpack.config.js'), { prefix: prefix });        
+        this.fs.copyTpl(this.templatePath('webpack.config.js'), this.destinationPath('webpack.config.js'));
         this.fs.copyTpl(this.templatePath('config.json'), this.destinationPath('config.json'));
 
         this.fs.copyTpl(this.templatePath('creds.json'), this.destinationPath('creds.json'), {
@@ -114,7 +123,14 @@ module.exports = class extends Generator {
     }
 
     install() {
-        this.npmInstall();
+        switch (this.package) {
+            case 'npm':
+                this.npmInstall();
+                break;
+            case 'yarn':
+                this.yarnInstall();
+                break;
+        }
     }
 };
 

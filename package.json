@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "author": "Derek Finlinson",
   "keywords": [
