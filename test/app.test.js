@@ -50,7 +50,7 @@ describe('web resource project with user authentication', () => {
     });
 });
 
-describe('web resource project with client authentication', function () {
+describe('web resource project with client authentication', () => {
     var prompts = {
         prefix: 'Crm',
         name: 'web-resources',
@@ -79,7 +79,8 @@ describe('web resource project with client authentication', function () {
     });
 
     test('package.json has web-resources name', () => {
-        assert.fileContent('package.json', `"name": "${prompts.name}"`);
+        assert.fileContent('package.json', `"name": "${prompts.name}"`);        
+        
     });
 
     test('creds.json has server, clientId, clientSecret and solution', () => {
