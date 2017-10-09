@@ -10,7 +10,7 @@ describe('create form script', () => {
                 fs.copySync(path.join(__dirname, '../generators/app/templates'), dir);
             })
             .withPrompts({
-                namespace: 'Crm', filename: 'AccountForm', type: 'form', uniqueName: 'crm_AccountForm.js', displayName: "Account Form Script",
+                namespace: 'Crm', filename: 'AccountForm', type: 'form', name: 'crm_AccountForm.js', displayName: "Account Form Script",
             });
     });
 
@@ -28,7 +28,7 @@ describe('create form script', () => {
     test('add entries to config.js', () => {
         assert.fileContent('config.json', '"Crm.AccountForm": "./src/scripts/AccountForm.ts"');
         assert.fileContent('config.json', '"path": "./dist/js/Crm.AccountForm.js"');
-        assert.fileContent('config.json', '"uniqueName": "crm_AccountForm.js"');
+        assert.fileContent('config.json', '"name": "crm_AccountForm.js"');
         assert.fileContent('config.json', '"displayName": "Account Form Script"');
         assert.fileContent('config.json', '"type": "JavaScript"');
     });
@@ -41,7 +41,7 @@ describe('create ribbon script', () => {
                 fs.copySync(path.join(__dirname, '../generators/app/templates'), dir);
             })
             .withPrompts({
-                namespace: 'Crm', filename: 'AccountRibbon', type: 'form', uniqueName: 'crm_AccountRibbon.js', displayName: "Account Ribbon Script",
+                namespace: 'Crm', filename: 'AccountRibbon', type: 'form', name: 'crm_AccountRibbon.js', displayName: "Account Ribbon Script",
             });
     });
 
@@ -59,7 +59,7 @@ describe('create ribbon script', () => {
     test('add entries to config.js', () => {
         assert.fileContent('config.json', '"Crm.AccountRibbon": "./src/scripts/AccountRibbon.ts"');
         assert.fileContent('config.json', '"path": "./dist/js/Crm.AccountRibbon.js"');
-        assert.fileContent('config.json', '"uniqueName": "crm_AccountRibbon.js"');
+        assert.fileContent('config.json', '"name": "crm_AccountRibbon.js"');
         assert.fileContent('config.json', '"displayName": "Account Ribbon Script"');
         assert.fileContent('config.json', '"type": "JavaScript"');
     });
@@ -72,7 +72,7 @@ describe('create web resource script', () => {
                 fs.copySync(path.join(__dirname, '../generators/app/templates'), dir);
             })
             .withPrompts({
-                namespace: 'Crm', filename: 'Resource', type: 'form', uniqueName: 'crm_Resource.js', displayName: "Resource Script",
+                namespace: 'Crm', filename: 'Resource', type: 'form', name: 'crm_Resource.js', displayName: "Resource Script",
             });
     });
 
@@ -83,7 +83,7 @@ describe('create web resource script', () => {
     test('add entries to config.js', () => {
         assert.fileContent('config.json', '"Crm.Resource": "./src/scripts/Resource.ts"');    
         assert.fileContent('config.json', '"path": "./dist/js/Crm.Resource.js"');
-        assert.fileContent('config.json', '"uniqueName": "crm_Resource.js"');
+        assert.fileContent('config.json', '"name": "crm_Resource.js"');
         assert.fileContent('config.json', '"displayName": "Resource Script"');
         assert.fileContent('config.json', '"type": "JavaScript"');
     });

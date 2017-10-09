@@ -19,15 +19,15 @@
     "yeoman-generator"
   ],
   "dependencies": {
-    "yeoman-generator": "^1.1.1",
+    "yeoman-generator": "^2.0.1",
     "ast-query": "^2.0.0",
-    "fs-extra": "^2.0.0"
+    "fs-extra": "^4.0.0"
   },
   "devDependencies": {
     "cz-conventional-changelog": "^2.0.0",
-    "jest": "^20.0.4",
-    "semantic-release": "^6.3.6",
-    "yeoman-assert": "^3.0.0",
+    "jest": "^21.2.1",
+    "semantic-release": "^8.0.3",
+    "yeoman-assert": "^3.1.0",
     "yeoman-test": "^1.7.0"
   },
   "config": {
