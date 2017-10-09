@@ -34,7 +34,7 @@ module.exports = class extends Generator {
         },
         {
             type: 'input',
-            name: 'uniqueName',
+            name: 'name',
             message: 'Script unique name (including solution prefix)'
         },
         {
@@ -46,7 +46,7 @@ module.exports = class extends Generator {
             this.type = answers.type;
             this.filename = answers.filename;
             this.displayName = answers.displayName;
-            this.uniqueName = answers.uniqueName;
+            this.name = answers.name;
         });
     }
 
@@ -72,7 +72,7 @@ module.exports = class extends Generator {
             config.webResources.push(
                 {
                     path: `./dist/js/${namespace}.${this.filename}.js`,
-                    uniqueName: this.uniqueName,
+                    name: this.name,
                     displayName: this.displayName,
                     type: 'JavaScript'
                 }
