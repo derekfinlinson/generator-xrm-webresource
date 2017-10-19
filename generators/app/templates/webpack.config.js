@@ -1,11 +1,13 @@
-var webpack = require('webpack');
-var WebpackEventPlugin = require('webpack-event-plugin');
-var webResource = require('node-webresource');
-var creds = require('./creds.json');
-var config = require('./config.json');
+const webpack = require('webpack');
+const WebpackEventPlugin = require('webpack-event-plugin');
+const webResource = require('node-webresource');
+const creds = require('./creds.json');
+const config = require('./config.json');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require("path");
 
 module.exports = function (env) {
-    var webpackConfig = {
+    let webpackConfig = {
         entry: config.entries,
 
         output: {
@@ -13,9 +15,7 @@ module.exports = function (env) {
             library: '[name]'
         },
 
-        resolve: {
-            extensions: [".tsx", ".ts", ".js", ".jsx"]
-        },
+        resolve: { extensions: [".tsx", ".ts", ".js", ".jsx"] },
 
         module: {
             rules: [{
@@ -40,6 +40,13 @@ module.exports = function (env) {
             new webpack.ProvidePlugin({
                 Promise: 'es6-promise-promise'
             }),
+            new CopyWebpackPlugin([
+                { 
+                  context: "./src",
+                  from: "**/*.{html,css}",
+                  to: "./dist"
+                }
+            ]),
             new WebpackEventPlugin([
                 {
                     hook: 'after-emit',
@@ -54,16 +61,16 @@ module.exports = function (env) {
                             webResources: config.webResources,
                             solution: creds.solution
                         };
-
+                        
                         var assets = Object.keys(compilation.assets).filter(asset => {
                             return compilation.assets[asset].emitted;
                         }).map(asset => {
                             return {
-                                name: asset,
-                                source: compilation.assets[asset].source()
+                                path: path.relative(__dirname.replace(path.join("node_modules", "node-webresource"), ""), asset),
+                                content: compilation.assets[asset].source().toString('utf8')
                             };
                         });
-                        
+
                         webResource.upload(uploadConfig, assets).then(() => {
                             callback();
                         }, (error) => {
