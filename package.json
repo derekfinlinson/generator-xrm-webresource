@@ -13,7 +13,9 @@
   "scripts": {
     "commit": "git-cz",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "author": "Derek Finlinson",
   "keywords": [
@@ -22,7 +24,8 @@
   "dependencies": {
     "ast-query": "^2.0.0",
     "fs-extra": "^7.0.1",
-    "yeoman-generator": "^3.2.0"
+    "yeoman-generator": "^3.2.0",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "commitizen": "^3.0.7",
@@ -36,5 +39,6 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "snyk": true
 }
