@@ -1,4 +1,4 @@
-# DEPRECATED Use [d365-cli](https://github.com/derekfinlinson/d365-cli) instead #
+# DEPRECATED Use [powerapps-tools](https://github.com/derekfinlinson/powerapps-tools) instead #
 
 # generator-xrm-webresource
 |Build|NPM|Semantic-Release|
